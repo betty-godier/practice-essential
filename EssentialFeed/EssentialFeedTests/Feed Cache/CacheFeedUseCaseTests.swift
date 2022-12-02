@@ -136,7 +136,6 @@ class CacheFeedUseCaseTests: XCTestCase {
     func test_save_succeedsOnSuccessfulCacheInsertion() {
         let items = [uniqueItem(), uniqueItem()]
         let (sut, store) = makeSUT()
-        let insertionError = anyNSError()
         let exp = expectation(description: "Wait for save completion")
         var receivedError: Error?
         
