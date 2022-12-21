@@ -50,7 +50,6 @@ class CodableFeedStore {
         } catch {
             completion(.failure(error))
         }
-
     }
     
     func insert(_ feed: [LocalFeedImage], timeStamp: Date, completion: @escaping FeedStore.InsertionCompletion) {
@@ -113,6 +112,15 @@ class CodableFeedStoreTests: XCTestCase {
         expect(sut, toRetrieve: .failure(anyNSError()))
     }
     
+    func test_retrieve_hasNoSideEffectsOnFailure() {
+        let storeURL = testSpecificStoreURL()
+        let sut = makeSUT(storeURL: storeURL)
+        
+        try! "invalid data".write(to: storeURL, atomically: false, encoding: .utf8)
+        expect(sut, toRetrieve: .failure(anyNSError()))
+        expect(sut, toRetrieve: .failure(anyNSError()))
+    }
+    
     // - MARK: Helpers
     
     private func makeSUT(storeURL: URL? = nil,file: StaticString = #file, line: UInt = #line) -> CodableFeedStore {
@@ -138,8 +146,8 @@ class CodableFeedStoreTests: XCTestCase {
     private func expect(_ sut: CodableFeedStore, toRetrieve expectedResult: RetrieveCachedFeedResult, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for cache retrieval")
         
-        sut.retrieve { retrieveResult in
-            switch (expectedResult, retrieveResult) {
+        sut.retrieve { retrievedResult in
+            switch (expectedResult, retrievedResult) {
             case (.empty, .empty), (.failure, .failure):
                 break
                 
@@ -147,7 +155,7 @@ class CodableFeedStoreTests: XCTestCase {
                 XCTAssertEqual(expectedFeed, retrievedFeed, file: file, line: line)
                 XCTAssertEqual(expectedTimestamp, retrievingTimestamp, file: file, line: line)
             default:
-                XCTFail("Expected to retrieve \(expectedResult), got \(retrieveResult) instead", file: file, line: line)
+                XCTFail("Expected to retrieve \(expectedResult), got \(retrievedResult) instead", file: file, line: line)
             }
             exp.fulfill()
         }
