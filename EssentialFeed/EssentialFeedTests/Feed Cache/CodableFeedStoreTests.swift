@@ -141,12 +141,9 @@ class CodableFeedStoreTests: XCTestCase {
             sut.retrieve { firstResult in
                 sut.retrieve { secondResult in
                     switch (firstResult, secondResult) {
-                    case let (.found(firstFound), .found(secondFound)):
-                        XCTAssertEqual(firstFound.feed, feed)
-                        XCTAssertEqual(firstFound.timestamp, timeStamp)
-                        
-                        XCTAssertEqual(secondFound.feed, feed)
-                        XCTAssertEqual(secondFound.timestamp, timeStamp)
+                    case let (.found(expectedFeed, expectedTimestamp), .found(retrievedFeed, retrievingTimestamp)):
+                        XCTAssertEqual(expectedFeed, retrievedFeed)
+                        XCTAssertEqual(expectedTimestamp, retrievingTimestamp)
                         
                     default:
                         XCTFail("Expected retrieving twice from non empty cache to deliver same found result with feed \(feed) and timestamp \(timeStamp), got \(firstResult) and \(secondResult) instead")
