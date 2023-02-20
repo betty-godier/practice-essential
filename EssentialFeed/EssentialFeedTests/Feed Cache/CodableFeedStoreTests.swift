@@ -5,7 +5,7 @@
 import EssentialFeed
 import XCTest
 
-class CodableFeedStoreTests: XCTestCase, FailableDeleteFeedStoreSpecs, FailableRetrieveFeedStoreSpecs {
+class CodableFeedStoreTests: XCTestCase, FailableFeedStoreSpecs {
     
     override func setUp() {
         super.setUp()
@@ -85,23 +85,13 @@ class CodableFeedStoreTests: XCTestCase, FailableDeleteFeedStoreSpecs, FailableR
     func test_insert_deliversErrorOnInsertionError() {
         let invalidStoreURL = URL(string: "invalid://store-url")!
         let sut = makeSUT(storeURL: invalidStoreURL)
-        let feed = uniqueImageFeed().local
-        let timestamp = Date()
-
-        let insertionError = insert((feed, timestamp), to: sut)
-
-        XCTAssertNotNil(insertionError, "Expected cache insertion to fail with an error")
+        assertThatInsertDeliversErrorOnInsertionError(on: sut)
     }
     
     func test_insert_hasNoSideEffectsOnInsertionError() {
         let invalidStoreURL = URL(string: "invalid://store-url")!
         let sut = makeSUT(storeURL: invalidStoreURL)
-        let feed = uniqueImageFeed().local
-        let timestamp = Date()
-
-        insert((feed, timestamp), to: sut)
-
-        expect(sut, toRetrieve: .empty)
+        assertThatInsertHasNoSideEffectsOnInsertionError(on: sut)
     }
     
     func test_delete_deliverNoErrorOnEmptyCache() {
