@@ -43,6 +43,7 @@
 		C5C33C8E29A3CED4003B60EF /* CoreDataFeedStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C33C8D29A3CED4003B60EF /* CoreDataFeedStoreTests.swift */; };
 		C5C33C9029A3D147003B60EF /* CoreDataFeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C33C8F29A3D147003B60EF /* CoreDataFeedStore.swift */; };
 		C5C33C9329A3E493003B60EF /* CoreDataFeedStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5C33C9129A3E493003B60EF /* CoreDataFeedStore.xcdatamodeld */; };
+		C5C33C9E29A3EB39003B60EF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C33C9D29A3EB39003B60EF /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		C5C33C8D29A3CED4003B60EF /* CoreDataFeedStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedStoreTests.swift; sourceTree = "<group>"; };
 		C5C33C8F29A3D147003B60EF /* CoreDataFeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedStore.swift; sourceTree = "<group>"; };
 		C5C33C9229A3E493003B60EF /* CoreDataFeedStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataFeedStore.xcdatamodel; sourceTree = "<group>"; };
+		C5C33C9D29A3EB39003B60EF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5C33C9E29A3EB39003B60EF /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +169,7 @@
 				C562CBAA28BF6A9200311ED4 /* EssentialFeedTests */,
 				C57DB47628CDB45600878AF8 /* EssentialFeedAPIEndToEndTests */,
 				C562CB9F28BF6A9100311ED4 /* Products */,
+				C5C33C9C29A3EB39003B60EF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -262,6 +266,14 @@
 				C5C33C8A29A3C7FC003B60EF /* XCTestCase+FailableDeleteFeedStoreSpecs.swift */,
 			);
 			path = FeedStoreSpecs;
+			sourceTree = "<group>";
+		};
+		C5C33C9C29A3EB39003B60EF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C5C33C9D29A3EB39003B60EF /* CoreData.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
