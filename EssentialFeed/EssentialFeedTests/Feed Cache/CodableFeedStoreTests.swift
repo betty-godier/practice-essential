@@ -124,8 +124,7 @@ class CodableFeedStoreTests: XCTestCase, FailableFeedStoreSpecs {
     }
     
     func test_delete_hasNoSideEffectsOnDeletionError() {
-        let noDeletePermissionURL = cachesDirectory()
-        let sut = makeSUT(storeURL: noDeletePermissionURL)
+        let sut = makeSUT(storeURL: noDeletePermissionURL())
         
         assertThatDeleteHasNoSideEffectsOnDeletionError(on: sut)
     }
