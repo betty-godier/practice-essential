@@ -2,7 +2,7 @@
 //      2023  Betty.dev 
 //
 
-import Foundation
+import CoreData
 
 public final class CoreDataFeedStore: FeedStore {
     public init() {}
